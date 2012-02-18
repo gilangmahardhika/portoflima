@@ -1,4 +1,12 @@
 Portfolio::Application.routes.draw do
+
+  # Session Login/Logout/Register
+  get "session/login"
+  match "/auth/:provider/callback" => "session#login"
+  get "session/logout"
+
+  get "session/register"
+
   get "home/index"
 
   get "admin/index"

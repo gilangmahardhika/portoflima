@@ -1,4 +1,11 @@
 %h1 Home
+-if !current_user
+	.login
+		= link_to 'Login', '/auth/facebook'
+-else
+	.login
+		= link_to 'Logout', session_logout_path
+
 .recent
 	%h2.title Recent Works
 	%ul

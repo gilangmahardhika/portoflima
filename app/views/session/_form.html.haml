@@ -1,0 +1,11 @@
+%fieldset
+	= simple_form_for @user, :html => { :multipart => true } do |f|
+		= f.input :uid, :input_html => { :value => @auth['uid'] }, :as => :hidden
+		= f.input :name, :input_html => { :value => @auth['info']['name'] }
+		= f.input :email, :input_html => { :value => @auth['info']['email'] }
+		= f.input :about, :input_html => { :value => @auth['info']['description'] }
+		= f.input :user_type_id, :label => "I am a", :collection => UserType.all, :include_blank => false
+		= f.input :image, :as => :file
+		= f.association :skills, :as => :select, :multiple => true, :required => true
+		= f.button :submit
+								
