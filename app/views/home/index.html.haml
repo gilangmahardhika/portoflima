@@ -1,0 +1,20 @@
+%h1 Home
+.recent
+	%h2.title Recent Works
+	%ul
+		= if @recent.present?
+			= @recents.each do |recent|
+				%li
+					- recent.title
+
+.popular
+	%h2.title Popular Works
+	%ul
+		= if @populars.present?
+			= @populars.each do |recent|
+				%li
+					- recent.title
+
+
+	
+	

@@ -1,0 +1,2 @@
+module WorkGalleriesHelper
+end

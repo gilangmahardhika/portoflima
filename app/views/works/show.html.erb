@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @work.title %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @work.user_id %>
+</p>
+
+<p>
+  <b>Skill type:</b>
+  <%= @work.skill_type_id %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @work.image %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @work.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @work.url %>
+</p>
+
+<p>
+  <b>Like:</b>
+  <%= @work.like %>
+</p>
+
+<p>
+  <b>Point:</b>
+  <%= @work.point %>
+</p>
+
+
+<%= link_to 'Edit', edit_work_path(@work) %> |
+<%= link_to 'Back', works_path %>

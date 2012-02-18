@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Work:</b>
+  <%= @work_gallery.work_id %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @work_gallery.image %>
+</p>
+
+
+<%= link_to 'Edit', edit_work_gallery_path(@work_gallery) %> |
+<%= link_to 'Back', work_galleries_path %>

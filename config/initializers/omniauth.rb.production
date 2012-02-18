@@ -1,0 +1,10 @@
+Rails.application.config.middleware.use OmniAuth::Builder do
+ provider :facebook, '115099918616275', 
+   'f129fc7731541c11c9e765191cb014c3',
+   :scope => 'publish_actions,email,offline_access,read_stream', :display => 'popup', 
+   :client_options => { 
+     :ssl => {
+       :ca_file => Rails.root.join('ca_bundle.crt').to_s
+       }
+     }
+end
