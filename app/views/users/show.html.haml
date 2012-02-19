@@ -1,0 +1,37 @@
+.row
+	.span7
+		.page-header
+			%h1
+				=@user.name
+				%small
+					=@user.user_type.name
+		.span2
+			%ul.thumbnails
+				%li
+					.thumbnail
+						=image_tag @user.image.url(:thumb)
+		.span4
+			%h4
+				About Me
+			%p
+				=@user.about
+			%h4
+				My Skills
+			%p
+				-@user.skills.each do |skill|
+					=skill.name 
+			%h6
+				=@user.email
+	.span5
+		.page-header
+			%h1
+				My Works
+		%dl
+			-@user.works.each do |work|
+				%dt
+					=link_to work.title, work
+				%dd
+					=work.description
+		
+			
+	

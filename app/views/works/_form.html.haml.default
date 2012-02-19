@@ -9,15 +9,12 @@
 		%fieldset
 			%legend
 				Images
-			-for i in 1...6 do
-				.control-group.file.required
-					-input = "<input class=\"file required\" id=\"work_work_galleries_attributes_#{i}_image\" name=\"work[work_galleries_attributes][#{i}][image]\" type=\"file\">"
-					=raw(input)
+			=f.simple_fields_for :work_galleries, @work.work_galleries.build do |w|
+				=w.input :image, :label => "Image", :as => :file
+				=link_to "add field", "javascript:void(0)", :class => "add_nested_fields", :"data-association" => "attachments"
 				
 		=f.input :description, :input_html => { :class => "span7", :rows => 3 }
 		=f.association :skills, :label => "Tools", :as => :select, :multiple => true, :required => true
 		.form-actions
 			=f.button :submit, :class => "btn btn-primary", :value => "Upload my work"
 			=link_to "Back to list works" ,works_path, :class => "btn"
-
-

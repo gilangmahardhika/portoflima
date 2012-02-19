@@ -1,9 +1,8 @@
 class WorkGallery < ActiveRecord::Base
-	belongs_to	:work
+	belongs_to :attachable, :polymorphic => true
 
 	validates	:image,
-		:presence => true,
 		:file_size => { :maximum => 10.megabytes.to_i }
 
-	mount_uploader	:image, GalleryUploader
+	mount_uploader	:image, WorkUploader
 end

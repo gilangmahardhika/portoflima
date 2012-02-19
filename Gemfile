@@ -15,6 +15,7 @@ gem 'simple_form', '2.0.0.rc'
 # Upload
 gem 'carrierwave'
 gem 'rmagick'
+gem 'nested_form'
 
 
 gem 'kaminari'

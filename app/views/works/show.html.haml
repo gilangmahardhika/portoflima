@@ -8,14 +8,24 @@
 	.span7
 		%h1
 			=@work.title
+			-if @work.url.present?
+				%small
+					=link_to @work.url, @work.url, :target => "blank"
 		%p
 			=@work.description
 			%br
 			%small
-				=@work.user.name
+				=link_to @work.user.name, user_path(@work.user)
 		%h3
 			Tools
 		%ul
 			-@work.skills.each do |skill|
 				%li
 					=skill.name
+	-if @work.work_galleries.present?
+		.span12
+			%ul.thumbnails
+				-@work.work_galleries.each do |image|
+					%li.span2
+						.thumbnail
+							=image_tag image.image.url(:thumb)
