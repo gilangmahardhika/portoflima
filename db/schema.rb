@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218084809) do
+ActiveRecord::Schema.define(:version => 20120218171709) do
+
+  create_table "about_mes", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -87,6 +94,11 @@ ActiveRecord::Schema.define(:version => 20120218084809) do
     t.integer "skill_id", :null => false
   end
 
+  create_table "skills_works", :id => false, :force => true do |t|
+    t.integer "work_id",  :null => false
+    t.integer "skill_id", :null => false
+  end
+
   create_table "user_skills", :force => true do |t|
     t.integer  "user_id"
     t.integer  "skill_id"
@@ -121,14 +133,14 @@ ActiveRecord::Schema.define(:version => 20120218084809) do
   create_table "works", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.integer  "skill_type_id"
     t.string   "image"
     t.text     "description"
     t.string   "url"
     t.integer  "like"
     t.integer  "point"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "skill_category_id"
   end
 
 end

@@ -2,11 +2,11 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @works = Work.order("created_at DESC").page(params[:page]).per(18)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @works }
+      # format.json { render json: @works }
     end
   end
 
@@ -14,7 +14,7 @@ class WorksController < ApplicationController
   # GET /works/1.json
   def show
     @work = Work.find(params[:id])
-
+    @title = @work.title
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @work }
@@ -79,5 +79,10 @@ class WorksController < ApplicationController
       format.html { redirect_to works_url }
       format.json { head :no_content }
     end
+  end
+
+  def the_best
+    @bests = Work.order("works.like DESC", "point DESC").limit(6)
+    @title = "The Best Works"
   end
 end

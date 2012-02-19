@@ -1,0 +1,13 @@
+%fieldset
+	%legend Upload new work
+	=simple_form_for @work, :html => { :multipart => true, :class => "form-vertical" } do |f|
+		=f.input :title, :input_html => {:class => "span5" }
+		=f.input :url, :input_html => {:class => "span5" }
+		=f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
+		=f.input :skill_category_id, :label => "Type", :collection => SkillCategory.all, :include_blank => false, :required => true, :input_html => {:class => "span5" }
+		=f.input :image, :as => :file
+		=f.input :description, :input_html => { :class => "span7", :rows => 3 }
+		=f.association :skills, :label => "Tools", :as => :select, :multiple => true, :required => true
+		.form-actions
+			=f.button :submit, :class => "btn btn-primary", :value => "Upload my work"
+			=link_to "Back to list works" ,works_path, :class => "btn"

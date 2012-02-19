@@ -7,6 +7,8 @@ class Work < ActiveRecord::Base
 	has_many	:loves
 	has_many	:points
 
+	has_and_belongs_to_many :skills
+
 	validates	:title, :presence => true
 	validates	:description, :presence => true
 	validates	:image,
@@ -23,9 +25,9 @@ class Work < ActiveRecord::Base
     	text  :skill_category, :boost => 2 do |a|
       		a.skill_category && a.skill_category.name
     	end
-    	text  :skill do |g|
-      		g.skill_category.skill && g.skill_category.skill.name
-    	end
+    	# text  :skill do |g|
+     #  		g.skill_category.skill && g.skill_category.skill.name
+    	# end
   end
 
 end

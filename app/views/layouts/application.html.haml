@@ -9,11 +9,105 @@
 
 	%body
 		-if flash[:notice]
-			%p.info
-				=flash[:notice]
+			.span12
+				.alert.alert-success
+					=link_to "×", "#", :class => "close", :"data-dismiss" => "alert"
+					=flash[:notice]
 
 		-if flash[:error]
-			%p.error
-				=flash[:error]
-				
-		= yield
+			.span12
+				.alert.alert-error
+					=flash[:error]
+		
+		
+		.navbar.navbar-fixed-top
+			.navbar-inner
+				.container
+					=link_to "portoflima", root_path, :class => "brand"
+					%ul.nav
+						%li.divider-vertical
+						-if params[:controller] == "works" and params[:action] != "new" and params[:action] != "the_best"
+							%li.active
+								=link_to 'Works', works_path
+						-else
+							%li
+								=link_to 'Works', works_path
+						%li.divider-vertical
+						-if params[:controller] == "users" and params[:action] == "index"
+							%li.active
+								=link_to 'The Artists', users_path
+						-else
+							%li
+								=link_to 'The Artists', users_path
+							
+						%li.divider-vertical
+						-if params[:controller] == "works" and params[:action] == "the_best"
+							%li.active
+								=link_to '6 The Best', the_best_path
+						-else
+							%li
+								=link_to '6 The Best', the_best_path
+						%li.divider-vertical
+						-if params[:controller] == "about" and params[:action] == "index"
+							%li.active
+								=link_to 'About', about_index_path
+						-else
+							%li
+								=link_to 'About', about_index_path
+						
+						%li.divider-vertical
+						-if current_user
+							-if params[:controller] == "works" and params[:action] == "new"
+								%li.active
+									=link_to new_work_path do
+										%i.icon-plus.icon-white
+										Upload My Work
+							-else
+								%li
+									=link_to new_work_path do
+										%i.icon-plus.icon-white
+										Upload My Work
+
+					%ul.nav.pull-right
+						%li.divider-vertical
+						-if !current_user
+							%li
+								=link_to '/auth/facebook' do
+									%i.icon-lock.icon-white
+									Login
+							%li.divider-vertical
+							%li
+								=link_to '/auth/facebook' do
+									%i.icon-pencil.icon-white
+									Register
+						-else
+							%li#nav-user-image
+								=image_tag current_user.image.url(:mini)
+							%li.dropdown
+								=link_to "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
+									=current_user.name
+									%b.caret
+								%ul.dropdown-menu
+									%li
+										=link_to works_path do
+											%i.icon-folder-open
+											My Works
+									%li
+										=link_to edit_user_path(current_user.id) do
+											%i.icon-user
+											Edit Profile
+									%li
+										=link_to session_logout_path do
+											%i.icon-off
+											Logout
+						%li.divider-vertical			
+
+					=form_tag "/search", :class => "navbar-search pull-right", :method => "GET" do
+						=text_field_tag "search", "",:class => "search-query", :placeholder => "Search"
+		.container
+			=yield
+			.row
+				.span12
+					%footer.footer
+						%p.pull-right
+							Developed by @gilangpm using RoR and Twitter Bootstrap

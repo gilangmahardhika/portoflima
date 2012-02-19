@@ -10,7 +10,7 @@ gem 'mysql2'
 
 # View
 gem 'haml'
-gem 'simple_form'
+gem 'simple_form', '2.0.0.rc'
 
 # Upload
 gem 'carrierwave'

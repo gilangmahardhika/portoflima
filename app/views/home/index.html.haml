@@ -1,26 +1,32 @@
-%h1 Home
--if !current_user
-	.login
-		= link_to 'Login', '/auth/facebook'
--else
-	.login
-		= link_to 'Logout', session_logout_path
-
-.recent
-	%h2.title Recent Works
-	%ul
-		= if @recent.present?
-			= @recents.each do |recent|
-				%li
-					- recent.title
-
-.popular
-	%h2.title Popular Works
-	%ul
-		= if @populars.present?
-			= @populars.each do |recent|
-				%li
-					- recent.title
+.row
+	.span12
+		.page-header
+			%h2
+				Recent Work
+		%ul.thumbnails
+			-if @recents.present?
+				-@recents.each do |recent|
+					%li.span2
+						.thumbnail
+							=link_to recent do
+								=image_tag recent.image.url(:thumb)
+							.caption
+								%h5 
+									=recent.title
+	.span12
+		.page-header
+			%h2.title
+				Popular Works
+		%ul.thumbnails
+			-if @populars.present?
+				-@populars.each do |popular|
+					%li.span2
+						.thumbnail
+							=link_to popular do
+								=image_tag popular.image.url(:thumb)
+							.caption
+								%h5
+									=popular.title
 
 
 	

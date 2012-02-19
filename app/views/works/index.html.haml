@@ -1,0 +1,13 @@
+.row
+	.span12
+		.page-header
+			%h1 
+				Works
+				%small 
+					These are the awesome works
+		%ul.thumbnails	
+			-@works.each do	|work|
+				%li.span2
+					.thumbnail
+						=link_to work, :title => work.title do
+							=image_tag work.image.url(:thumb)

@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-
+    @users = User.order("name ASC").page(params[:page]).per(16)
+    @title = "The Artists"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        session[:uid] = params[:uid]
+        session[:uid] = params[:user][:uid]
         format.html { redirect_to root_url, notice: 'User was successfully created.' }
         # format.json { render json: @user, status: :created, location: @user }
       else

@@ -1,0 +1,6 @@
+.span12
+	-if @about.present?
+		.page-header
+			%h1
+				=@about.title
+		=raw(@about.content)

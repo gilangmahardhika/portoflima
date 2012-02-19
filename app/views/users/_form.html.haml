@@ -1,0 +1,13 @@
+%fieldset
+    %legend My Profile
+    =simple_form_for @user, :html => { :multipart => true , :class => "form-vertical"} do |f|
+        =f.input :uid, :as => :hidden
+        =f.input :name, :input_html => {:class => "span5" }
+        =f.input :email, :input_html => {:class => "span5" }
+        =f.input :about, :input_html => {:class => "span7" }
+        =f.input :user_type_id, :label => "I am a", :collection => UserType.all, :include_blank => false, :input_html => {:class => "span7" }
+        =f.input :image, :as => :file, :input_html => {:class => "span5" }
+        =f.association :skills, :as => :select, :multiple => true, :required => true
+        .form-actions
+            =f.button :submit, :class => "btn btn-primary", :value => "Save my profile"
+              

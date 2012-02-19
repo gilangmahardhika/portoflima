@@ -1,5 +1,7 @@
 Portfolio::Application.routes.draw do
 
+  get "about/index"
+
   # Session Login/Logout/Register
   get "session/login"
   match "/auth/:provider/callback" => "session#login"
@@ -28,6 +30,7 @@ Portfolio::Application.routes.draw do
   resources :comments
 
   resources :works
+  match '/6-the-best' => "works#the_best", :as => :the_best
 
   resources :skill_categories
 

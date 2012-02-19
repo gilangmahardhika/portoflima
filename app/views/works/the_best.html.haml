@@ -1,0 +1,16 @@
+.row
+	.span12
+		.page-header
+			%h2
+				The Best Works
+		%ul.thumbnails	
+			-@bests.each do	|work|
+				%li.span2
+					.thumbnail
+						=link_to work, :title => work.title do
+							=image_tag work.image.url(:thumb)
+						.caption
+							%h6
+								=work.title
+							%p
+								=work.user.name

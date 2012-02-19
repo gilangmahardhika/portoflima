@@ -23,7 +23,7 @@ class SessionController < ApplicationController
 
     respond_to do |format|
       if @user.save
-      	session[:uid] = params[:uid]
+      	session[:uid] = params[:users][:uid]
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else

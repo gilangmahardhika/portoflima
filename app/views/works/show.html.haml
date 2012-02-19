@@ -1,0 +1,21 @@
+.row
+	.span4
+		%ul.thumbnails
+			%li
+				.thumbnail
+					=image_tag @work.image.url(:big)
+
+	.span7
+		%h1
+			=@work.title
+		%p
+			=@work.description
+			%br
+			%small
+				=@work.user.name
+		%h3
+			Tools
+		%ul
+			-@work.skills.each do |skill|
+				%li
+					=skill.name
