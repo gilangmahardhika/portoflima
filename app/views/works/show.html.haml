@@ -16,16 +16,55 @@
 			%br
 			%small
 				=link_to @work.user.name, user_path(@work.user)
-		%h3
-			Tools
-		%ul
-			-@work.skills.each do |skill|
-				%li
-					=skill.name
-	-if @work.work_galleries.present?
+		.span3
+			%h3
+				Tools
+			%ul
+				-@work.skills.each do |skill|
+					%li
+						=skill.name
+		.span3
+			%h3
+				Actions
+			-if can? :update, @work
+				=link_to edit_work_path(@work) do
+					%i.icon-pencil
+					Edit
+			-if can? :destroy, @work
+				=link_to @work, :method => :delete, :confirm => "Are you sure?" do
+					%i.icon-trash
+					Delete
+	.row
 		.span12
-			%ul.thumbnails
-				-@work.work_galleries.each do |image|
-					%li.span2
-						.thumbnail
-							=image_tag image.image.url(:thumb)
+			-if @work.work_galleries.present?	
+				.page-header
+					%h2
+						Images Gallery
+					%ul.thumbnails
+						-@work.work_galleries.each do |image|
+							%li.span2
+								.thumbnail
+									=image_tag image.image.url(:thumb)
+	.row
+		.span7
+			.page-header
+				%h2
+					Comments
+			-if current_user
+				#fb-root
+				=fb_js
+			
+				.fb-comments{ :"data-href" => "http://#{request.host}:#{request.port}#{request.fullpath}",  :"data-num-posts" => 10, :"data-width" => 660 }
+			-else
+				.hero-unit
+					%h1
+						Oops!!
+					%p
+						Please login first.
+					%p
+						=link_to "Click here to login", "/auth/facebook", :class => "btn btn-info btn-large"
+				
+		.span4
+			.page-header
+				%h2
+					Related Works

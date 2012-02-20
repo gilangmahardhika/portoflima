@@ -30,7 +30,11 @@ Portfolio::Application.routes.draw do
   resources :comments
 
   resources :works
+  #get 'works/my_works'
+  match '/my-works' => "works#my_works", :as => :my_works
+  #get 'the_best'
   match '/6-the-best' => "works#the_best", :as => :the_best
+    
 
   resources :skill_categories
 

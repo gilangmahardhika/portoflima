@@ -9,7 +9,13 @@
 		%fieldset
 			%legend
 				Images
-			-for i in 1...6 do
+			-if params[:controller] == "works" and params[:action] == "new"
+				-for i in 1...7 do
+					.control-group.file.required
+						-input = "<input class=\"file required\" id=\"work_work_galleries_attributes_#{i}_image\" name=\"work[work_galleries_attributes][#{i}][image]\" type=\"file\">"
+						=raw(input)
+			-elsif params[:controller] == "works" and params[:action] == "edit" and @galleries.to_i != 6
+			-for i in 1...@galleries_form do
 				.control-group.file.required
 					-input = "<input class=\"file required\" id=\"work_work_galleries_attributes_#{i}_image\" name=\"work[work_galleries_attributes][#{i}][image]\" type=\"file\">"
 					=raw(input)

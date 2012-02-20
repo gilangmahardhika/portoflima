@@ -1,0 +1,21 @@
+.row
+	.span12
+		.page-header
+			%h1
+				My Awesome
+				%small
+					works
+		%ul.thumbnails
+			-@works.each do |work|
+				%li.span2
+					.thumbnail
+						=image_tag work.image.url(:thumb)
+						.caption
+							%h3
+								=link_to work.title, work
+							=link_to edit_work_path(work) do
+								%i.icon-pencil
+								Edit
+							=link_to work, :method => :delete, :confirm => "Are you sure?" do
+								%i.icon-trash
+								Delete

@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+  load_and_authorize_resource
+  skip_authorize_resource :only => [:the_best, :index]
   # GET /works
   # GET /works.json
   def index
@@ -35,6 +37,8 @@ class WorksController < ApplicationController
   # GET /works/1/edit
   def edit
     @work = Work.find(params[:id])
+    @galleries = @work.work_galleries.count
+    @galleries_form = 6.to_i - @galleries.to_i + 1.to_i
   end
 
   # POST /works
@@ -84,5 +88,9 @@ class WorksController < ApplicationController
   def the_best
     @bests = Work.order("works.like DESC", "point DESC").limit(6)
     @title = "The Best Works"
+  end
+
+  def my_works
+    @works = Work.where(:user_id => current_user.id)
   end
 end
