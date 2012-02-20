@@ -31,7 +31,10 @@ gem 'sunspot_rails'
 gem 'progress_bar'
 
 # Admin CMS
-gem 'activeadmin'
+gem 'rails_admin'
+
+# Url Pretifier
+gem 'stringex'
 
 
 

@@ -1,6 +1,7 @@
 class Work < ActiveRecord::Base
-	attr_accessible :work_galleries_attributes, :title, :url, :user_id, :skill_category_id, :image, :description, :skill_ids
 
+	attr_accessible :work_galleries_attributes, :title, :url, :user_id, :skill_category_id, :image, :description, :skill_ids
+	# acts_as_url :title, :sync_url => true
 	belongs_to	:user
 	belongs_to	:skill_category
 
@@ -31,6 +32,10 @@ class Work < ActiveRecord::Base
     	# text  :skill do |g|
      #  		g.skill_category.skill && g.skill_category.skill.name
     	# end
+  end
+
+  def to_param
+  	"#{id}/#{title.parameterize}"
   end
 
 end

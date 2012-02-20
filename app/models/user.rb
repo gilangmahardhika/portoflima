@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
 		:file_size => { :maximum => 10.megabytes.to_i }
 
 	mount_uploader	:image, UserUploader
+
+	def to_param
+		"#{id}/#{name.parameterize}"
+	end
 end
